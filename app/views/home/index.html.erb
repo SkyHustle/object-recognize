@@ -12,8 +12,32 @@
     if (localMediaStream) {
       ctx.drawImage(video, 0, 0, 600, 400, 0, 0, 300, 150) // default canvas size 300x150
       // "image/webp" works in Chrome. Other browsers will fall back to image/png.
-      document.querySelector('img').src = canvas.toDataURL('image/webp')
+      document.querySelector('img').src = canvas.toDataURL('image/png')
+
+      var file = dataURLtoBlob(canvas.toDataURL('image/png'))
+      // Create new form data
+      var fd = new FormData()
+      // Append our Canvas image file to the form data
+      fd.append("image", file)
+      // And send it
+      $.ajax({
+         url: "/screenshot",
+         type: "POST",
+         data: fd,
+         processData: false,
+         contentType: false,
+      });
+
     }
+  }
+
+  function dataURLtoBlob(dataURL) {
+    var binary = atob(dataURL.split(',')[1]);
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
   }
 
   video.addEventListener('click', snapshot, false)

@@ -3,8 +3,9 @@ class HomeController < ApplicationController
   end
 
   def screenshot
-    File.open("#{Rails.root}/public/uploads/somefilename.png", 'wb') do |f|
+    File.open("#{Rails.root}/public/snapshot.png", 'wb') do |f|
       f.write(params[:image].read)
     end
+    redirect_to root_path
   end
 end
