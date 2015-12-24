@@ -1,7 +1,5 @@
-require 'rubygems'
 require 'net/http'
 require 'uri'
-require 'json'
 
 class AlchemyAPI
 
