@@ -2,6 +2,10 @@
 <img id="snap-shot" src="" width="600" height="400">
 <canvas style="display:none;"></canvas>
 
+<% @response["imageKeywords"].each do |word_object| %>
+  <h2><%= word_object['text'] %></h2>
+<% end %>
+
 <script>
   var video  = document.querySelector('video')
   var canvas = document.querySelector('canvas')
