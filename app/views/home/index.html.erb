@@ -10,7 +10,6 @@
   var video  = document.querySelector('video')
   var canvas = document.querySelector('canvas')
   var ctx    = canvas.getContext('2d')
-  var localMediaStream = null
 
   function snapshot() {
     if (localMediaStream) {
@@ -47,7 +46,7 @@
   video.addEventListener('click', snapshot, false)
 
   var errorCallback = function(e) {
-    console.log('Reeeejected!', e)
+    console.log('Rejected!', e)
   }
 
   var hdConstraints = {
